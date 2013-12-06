@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 
 import upenn.cis550.groupf.client.event.ViewEvent;
+import upenn.cis550.groupf.shared.Board;
 import upenn.cis550.groupf.shared.User;
 import upenn.cis550.groupf.shared.ViewResult;
 
@@ -30,7 +31,9 @@ public class UserPage implements ViewEvent.Handler {
 	public EventBus EVENT_BUS;
 	private final ContentServiceAsync contentService = GWT
 			.create(ContentService.class);
+	
 	User user = null;
+	Board board = null;
 	
 	final Label nameContent = new Label("");
 	final Label affliationContent = new Label("");
@@ -68,48 +71,45 @@ public class UserPage implements ViewEvent.Handler {
 		infoGrid.setSize("151px", "143px");
 		personalInfoPanel.setCellHorizontalAlignment(infoGrid, HasHorizontalAlignment.ALIGN_CENTER);
 		
+		HorizontalPanel boardPanel = new HorizontalPanel();
+		rootPanel.add(boardPanel, 210, 20);
+		boardPanel.getElement().getStyle().setPosition(Position.RELATIVE);
+		boardPanel.setSize("530px", "550px");
+		
+		
 		Label lblName = new Label("Name");
 		infoGrid.setWidget(0, 0, lblName);
 		
 		
-		//infoGrid.setWidget(0, 1, nameContent);
-		
 		Label lblAffliation = new Label("Affliation");
 		infoGrid.setWidget(1, 0, lblAffliation);
-		
-		
-		//infoGrid.setWidget(1, 1, affliationContent);
 		
 		Label lblEmail = new Label("Email");
 		infoGrid.setWidget(2, 0, lblEmail);
 		
-		//user = result.get(0);
 		Image defaultImage = new Image("/images/default.jpeg");
 		defaultImage.setPixelSize(153, 143);
 		
-		// temp
+		Label boardNameLabel = new Label();
+		
+		// getting content
 		user = (User) result.get(0);
 		lblName.setText(user.getName());
 		affliationContent.setText(user.getAffiliation());
-		lblEmailcontent.setText(user.getEmail());
-		
-		// add to conrresponding panels
-		/**
-		personalInfoPanel.add(defaultImage);
-		personalInfoPanel.add(nameLabel);
-		personalInfoPanel.add(birthdayLabel);
-		personalInfoPanel.add(emailLabel);
-		*/
+		lblEmailcontent.setText(user.getEmail());		
 		imagePanel.add(defaultImage);
 		infoGrid.setWidget(0, 1, nameContent);
 		infoGrid.setWidget(1, 1, affliationContent);
 		infoGrid.setWidget(2, 1, lblEmailcontent);
 		
+		for (int i = 1; i < result.size(); i++) {
+			board = (Board) result.get(i);
+			boardNameLabel.setText(board.getName());
+			boardPanel.add(boardNameLabel);
+		}
 		
-		HorizontalPanel boardPanel = new HorizontalPanel();
-		rootPanel.add(boardPanel, 210, 20);
-		boardPanel.getElement().getStyle().setPosition(Position.RELATIVE);
-		boardPanel.setSize("530px", "550px");
+		
+
 		
 			
 		
