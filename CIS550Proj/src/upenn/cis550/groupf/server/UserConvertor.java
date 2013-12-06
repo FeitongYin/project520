@@ -32,32 +32,38 @@ public class UserConvertor {
 	}
 	
 	public static Board getBoardFrom(ResultSet rs) throws SQLException {
-		//return new Board();
-		return null;
+		return new Board(rs.getInt("USERID"), rs.getInt("BOARDID"),
+				rs.getString("BOARDNAME"));
 		
 	}
+	
+	
 	/**
 	 * This returns user and his/her Boards
 	 * @param rs input ResultSet
 	 * @return corresponding User object
 	 * @throws SQLException
 	 */
-	public static User getUserAndBoardFrom(ResultSet rs) {
-		User user = null;
-		List<Board> boards = new ArrayList<Board>();
+	public static Object getUserAndBoardFrom(ResultSet rs) {
+		List<Object> userAndBoard = new ArrayList<Object>();
+		User user = getUser(rs);
+		userAndBoard.add(user);
+		
+		Board board = null;
 		try {
-			rs.next();
-			user = new User(rs.getInt("USERID"), rs.getString("NAME"),
-					rs.getString("PASSWORD"), isMale(rs.getString("GENDER")),
-					rs.getString("email"), rs.getString("phone"), 
-					rs.getString("affiliation"));
+			while(rs.next()){
+				board = new Board(rs.getInt("USERID"), rs.getInt("BOARDID"),
+						rs.getString("BOARDNAME"));
+				userAndBoard.add(board);
+			}			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return user;
+		return userAndBoard;
 	}
 	
+
 	// ATTENTION!! 
 	// the only difference with getUserFrom is that this guy do not call rs.next().
 	// it is called by getUserListFrom().
