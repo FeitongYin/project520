@@ -126,8 +126,12 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 			stat = conn.createStatement();
 			
 			System.out.println("Retrieving User's Information...");
-			rs = stat.executeQuery("SELECT * FROM Users where name = '"
-					+ name +"'");
+			
+			//rs = stat.executeQuery("SELECT * FROM Users where name = '"
+				//	+ name +"'");
+			rs = stat.executeQuery("SELECT U.*, B.boardID, B.boardName FROM Users U, Boards B where B.userID = U.userID and U.name = '"
+						+ name +"'");
+			
 		} catch(SQLException se) {
 			se.printStackTrace();
 		}
