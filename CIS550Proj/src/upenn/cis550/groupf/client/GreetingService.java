@@ -1,5 +1,7 @@
 package upenn.cis550.groupf.client;
 
+import java.util.List;
+
 import upenn.cis550.groupf.shared.User;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -15,5 +17,5 @@ public interface GreetingService extends RemoteService {
 	
 	User addUser(String firstName, String lastName, String email, String sex);
 	
-	Object retrieveUserInfo(String name);
+	List<Object> retrieveUserInfo(String name);
 }

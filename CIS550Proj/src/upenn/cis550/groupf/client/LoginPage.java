@@ -1,5 +1,7 @@
 package upenn.cis550.groupf.client;
 
+import java.util.List;
+
 import upenn.cis550.groupf.client.event.LoginEvent;
 import upenn.cis550.groupf.client.event.RetrieveUserInfoEvent;
 import upenn.cis550.groupf.shared.User;
@@ -82,7 +84,7 @@ public class LoginPage {
 			
 			// trigger a query via the event bus (control goes back to MyApp)
 			Pennterest.EVENT_BUS.fireEvent(new RetrieveUserInfoEvent(nameToServer,
-					new AsyncCallback<User>() {
+					new AsyncCallback<List<Object>>() {
 				
 				// On error, call the error dialog routine
 				public void onFailure(Throwable caught) {
@@ -90,7 +92,7 @@ public class LoginPage {
 				}
 
 				// On successful retrieval of user, create a user's personal page
-				public void onSuccess(User result) {
+				public void onSuccess(List<Object> result) {
 					UserPage userPage = new UserPage(EVENT_BUS,result);
 					userPage.doWork();
 					
@@ -98,6 +100,8 @@ public class LoginPage {
 					//pinPage.doWork();
 					
 				}
+
+				
 			}));
 		}
 		

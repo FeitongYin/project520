@@ -1,6 +1,7 @@
 package upenn.cis550.groupf.client;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import upenn.cis550.groupf.shared.User;
 
@@ -16,5 +17,5 @@ public interface GreetingServiceAsync {
 	void addUser(String firstName, String lastName, String email, String sex,
 			AsyncCallback<User> callback);
 	
-	void retrieveUserInfo(String name, AsyncCallback<Object> callback);
+	void retrieveUserInfo(String name, AsyncCallback<List<Object>> callback);
 }

@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 /**
  * The server side implementation of the RPC service.
@@ -119,7 +120,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 	
 	@Override
-	public Object retrieveUserInfo(String name) {
+	public List<Object> retrieveUserInfo(String name) {
 		// TODO Auto-generated method stub
 		ResultSet rs = null;
 		try {
@@ -135,7 +136,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		} catch(SQLException se) {
 			se.printStackTrace();
 		}
-		return UserConvertor.getUserAndBoardFrom(rs);
+		return (List<Object>) UserConvertor.getUserAndBoardFrom(rs);
 	}
 	
 	

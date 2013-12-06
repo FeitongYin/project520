@@ -1,5 +1,7 @@
 package upenn.cis550.groupf.client;
 
+import java.util.List;
+
 import upenn.cis550.groupf.client.event.LoginEvent;
 import upenn.cis550.groupf.client.event.RetrieveUserInfoEvent;
 import upenn.cis550.groupf.shared.User;
@@ -57,7 +59,7 @@ public class Pennterest implements EntryPoint, LoginEvent.Handler, RetrieveUserI
 	
 	@Override
 	public void processRetrieve(String name,
-			AsyncCallback<Object> callback) {
+			AsyncCallback<List<Object>> callback) {
 			loginService.retrieveUserInfo(name, callback);
 	}
 }

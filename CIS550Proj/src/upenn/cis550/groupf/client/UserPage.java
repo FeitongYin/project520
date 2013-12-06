@@ -1,5 +1,7 @@
 package upenn.cis550.groupf.client;
 
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.event.shared.EventBus;
@@ -28,12 +30,13 @@ public class UserPage implements ViewEvent.Handler {
 	public EventBus EVENT_BUS;
 	private final ContentServiceAsync contentService = GWT
 			.create(ContentService.class);
+	User user = null;
 	
 	final Label nameContent = new Label("");
 	final Label affliationContent = new Label("");
 	final Label lblEmailcontent = new Label("");
 	
-	public UserPage(EventBus bus, User user) {
+	public UserPage(EventBus bus, List<Object> result) {
 		this.EVENT_BUS = bus;
 		EVENT_BUS.addHandler(ViewEvent.TYPE, this);
 		
@@ -80,9 +83,12 @@ public class UserPage implements ViewEvent.Handler {
 		Label lblEmail = new Label("Email");
 		infoGrid.setWidget(2, 0, lblEmail);
 		
-		
+		//user = result.get(0);
 		Image defaultImage = new Image("/images/default.jpeg");
 		defaultImage.setPixelSize(153, 143);
+		
+		// temp
+		user = (User) result.get(0);
 		lblName.setText(user.getName());
 		affliationContent.setText(user.getAffiliation());
 		lblEmailcontent.setText(user.getEmail());
