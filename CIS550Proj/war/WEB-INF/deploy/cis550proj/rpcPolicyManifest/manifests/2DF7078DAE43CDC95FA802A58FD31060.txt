@@ -1,0 +1,2 @@
+serviceClass: upenn.cis550.groupf.client.ContentService
+path: 718E4294F0DAD7E127660FDC706A64C9.gwt.rpc
