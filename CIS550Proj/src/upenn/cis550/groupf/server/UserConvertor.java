@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 import upenn.cis550.groupf.shared.User;
+import upenn.cis550.groupf.shared.Board;
 
 public class UserConvertor {
 	/**
@@ -16,6 +18,33 @@ public class UserConvertor {
 	 */
 	public static User getUserFrom(ResultSet rs) {
 		User user = null;
+		try {
+			rs.next();
+			user = new User(rs.getInt("USERID"), rs.getString("NAME"),
+					rs.getString("PASSWORD"), isMale(rs.getString("GENDER")),
+					rs.getString("email"), rs.getString("phone"), 
+					rs.getString("affiliation"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return user;
+	}
+	
+	public static Board getBoardFrom(ResultSet rs) throws SQLException {
+		//return new Board();
+		return null;
+		
+	}
+	/**
+	 * This returns user and his/her Boards
+	 * @param rs input ResultSet
+	 * @return corresponding User object
+	 * @throws SQLException
+	 */
+	public static User getUserAndBoardFrom(ResultSet rs) {
+		User user = null;
+		List<Board> boards = new ArrayList<Board>();
 		try {
 			rs.next();
 			user = new User(rs.getInt("USERID"), rs.getString("NAME"),
