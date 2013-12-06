@@ -15,5 +15,5 @@ public interface GreetingService extends RemoteService {
 	
 	User addUser(String firstName, String lastName, String email, String sex);
 	
-	User retrieveUserInfo(String name);
+	Object retrieveUserInfo(String name);
 }

@@ -16,5 +16,5 @@ public interface GreetingServiceAsync {
 	void addUser(String firstName, String lastName, String email, String sex,
 			AsyncCallback<User> callback);
 	
-	void retrieveUserInfo(String name, AsyncCallback<User> callback);
+	void retrieveUserInfo(String name, AsyncCallback<Object> callback);
 }

@@ -119,7 +119,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 	
 	@Override
-	public User retrieveUserInfo(String name) {
+	public Object retrieveUserInfo(String name) {
 		// TODO Auto-generated method stub
 		ResultSet rs = null;
 		try {
@@ -135,7 +135,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		} catch(SQLException se) {
 			se.printStackTrace();
 		}
-		return UserConvertor.getUserFrom(rs);
+		return UserConvertor.getUserAndBoardFrom(rs);
 	}
 	
 	

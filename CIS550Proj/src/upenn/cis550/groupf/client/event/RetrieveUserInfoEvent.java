@@ -20,7 +20,7 @@ public class RetrieveUserInfoEvent extends GwtEvent<RetrieveUserInfoEvent.Handle
 	private String name;
 		
 	// Whom to call when results are returned
-	private AsyncCallback<User> callback; 
+	private AsyncCallback<Object> callback; 
 		
 	/**
 	 * GwtEvents need to make clear what their type and handler type is
@@ -29,7 +29,7 @@ public class RetrieveUserInfoEvent extends GwtEvent<RetrieveUserInfoEvent.Handle
 			new Type<RetrieveUserInfoEvent.Handler>();
 	
 	
-	public RetrieveUserInfoEvent(String name, AsyncCallback<User> callback) {
+	public RetrieveUserInfoEvent(String name, AsyncCallback<Object> callback) {
 		this.name = name;
 		this.callback = callback;
 	}
@@ -55,7 +55,7 @@ public class RetrieveUserInfoEvent extends GwtEvent<RetrieveUserInfoEvent.Handle
 	 */
 	public static interface Handler extends EventHandler {
 		public void processRetrieve(String name, 
-				AsyncCallback<User> callback);
+				AsyncCallback<Object> callback);
 	}
 
 }

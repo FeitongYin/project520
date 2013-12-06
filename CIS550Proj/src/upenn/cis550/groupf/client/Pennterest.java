@@ -57,7 +57,7 @@ public class Pennterest implements EntryPoint, LoginEvent.Handler, RetrieveUserI
 	
 	@Override
 	public void processRetrieve(String name,
-			AsyncCallback<User> callback) {
+			AsyncCallback<Object> callback) {
 			loginService.retrieveUserInfo(name, callback);
 	}
 }
